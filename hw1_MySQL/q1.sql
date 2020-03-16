@@ -1,0 +1,1 @@
+select M.matchId, max(M.DBNOs) as DBNOs from player_statistic M group by M.matchID order by max(M.DBNOs) desc limit 20;
