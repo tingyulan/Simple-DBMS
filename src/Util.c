@@ -134,14 +134,6 @@ void print_aggre(Table_t *table, Command_t *cmd, int limit, int offset){
         for(j=0; j<idxListLen; ++j){
             
             if(idxList[j]==1){
-            //if(idxList[j]==1 && table->cache_map[j]==1){
-                //if(coffset < offset){
-                //    coffset +=1;
-                //}else{
-                    //if (limit != -1 && (num_print) >= limit) {
-                    //    break;
-                    //}
-
                     user = get_User(table, j);
                     if(aggre==1 || aggre==3){
                         if (!strncmp(p, "id", 2)) {
@@ -155,8 +147,6 @@ void print_aggre(Table_t *table, Command_t *cmd, int limit, int offset){
                         tmp += pick_num;
                     }
                     count += 1;
-                    //num_print += 1;
-                //}
             }
         }
 
@@ -243,8 +233,6 @@ void print_aggre_like(Table_like_t *table_like, Command_t *cmd, int limit, int o
               tmp += pick_num;
           }
           count += 1;
-                    //num_print += 1;
-                //}
             
         }
 
@@ -328,7 +316,6 @@ void print_users(Table_t *table, Table_like_t *table_like, Command_t *cmd) {
             print_aggre(table, cmd, limit, offset);
         }else{
             print_aggre_like(table_like, cmd, limit, offset);
-              //*****************************
         }
     }
 }
@@ -495,10 +482,6 @@ void create_idxList(Command_t *cmd, Table_t *table){
     char *pick_str, *pick_str2;
     User_t *user;
 
-    // char p[STR_LEN+1];
-    // int constraint=-1;
-    // char con_str[STR_LEN+1];
-    // bool numorstr=0; //0:numerical, 1:string
     register int andor=-1; //-1:no and or, 1:and, 2:or
     idxList = (bool*)malloc(idxListLen * sizeof(bool));
 
@@ -508,8 +491,6 @@ void create_idxList(Command_t *cmd, Table_t *table){
     }
 
     step=0;
-    // for(i=0; i<4; ++i){ target[i]=0; }
-    // for(i=0; i<6; ++i){ op[i]=0; }
     //IF THERE IS NO WHERE CLAUSE
     if(where_fields_len==0){
         return;
@@ -818,25 +799,17 @@ int handle_select_cmd(Table_t *table, Table_like_t *table_like, Command_t *cmd) 
 }
 
 int handle_update_cmd(Table_t *table, Command_t *cmd) {
-    //cmd->type = SELECT_CMD;
-    //size_t where_fields_len = cmd->cmd_args.sel_args.where_fields_len;
+    
     size_t idxListLen = table->len;
     User_t *user;
-    // char set[STR_LEN+1];
+    
     register int target=-1; //1:id, 2:name, 3:email, 4:age
     register int change_num;
     char change_str[STR_LEN+1];
     register int idx;
     register int count=0;
     bool primary=0;
-    //INITIALIZE
-    // for (i=0; i<STR_LEN+1; ++i){
-    //     set[i]='\0';
-    // }
-    // for(i=0; i<strlen(cmd->args[3]); ++i){
-    //     set[i]=cmd->args[3][i];
-    // }
-    //set[strlen(cmd->args[3])]='\0';
+    
     if( cmd->args_len>6 ){
         where_state_handler(cmd, 7);
     }
@@ -895,16 +868,6 @@ int handle_update_cmd(Table_t *table, Command_t *cmd) {
     }
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

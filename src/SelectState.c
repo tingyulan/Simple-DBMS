@@ -49,15 +49,13 @@ void field_state_handler(Command_t *cmd, size_t arg_idx) {
 
 void table_state_handler(Command_t *cmd, size_t arg_idx) {
     
-    //if(arg_idx < cmd->args_len){
-        if (strncmp(cmd->args[arg_idx], "user", 4)==0){ cmd->cmd_args.sel_args.UserOrLike=0; }
-        else { cmd->cmd_args.sel_args.UserOrLike=1; }
-        arg_idx++;
-    //}
+    if (strncmp(cmd->args[arg_idx], "user", 4)==0){ cmd->cmd_args.sel_args.UserOrLike=0; }
+    else { cmd->cmd_args.sel_args.UserOrLike=1; }
+    arg_idx++;
+
     
         
     if (arg_idx < cmd->args_len) {
-        
         if (arg_idx == cmd->args_len) {
             return;
         }else if (!strncmp(cmd->args[arg_idx], "join", 4)){ 
@@ -103,7 +101,6 @@ void join_state_handler(Command_t *cmd, size_t arg_idx){
 }
 
 void where_state_handler(Command_t *cmd, size_t arg_idx){
-    // printf("IN WHERE STATE HANDLER\n");
     bool flg = 0;  //0: in where clause, 1: out of where clause
     while (arg_idx < cmd->args_len) {
         if (!strncmp(cmd->args[arg_idx], "offset", 6)) {
@@ -115,7 +112,6 @@ void where_state_handler(Command_t *cmd, size_t arg_idx){
             limit_state_handler(cmd, arg_idx+1);
             return;
         } else if (flg==0){
-            // printf("GOING TO ADD WHERE FIELD\n");
             add_where_field(cmd, cmd->args[arg_idx]);
         }
         ++arg_idx;
