@@ -35,10 +35,22 @@ This project is a simple DBMS implemented using C, as the education material of 
 
 ## Query
 
-***The current table schema is hard coded, the schema in the [include/User.h](include/User.h), you can check the User_t to get the detail of each field.***
+### Supported command
+| Command | Note |
+|---|---|
+| insert | | 
+| select | |
+| primary key | |
+| limit argument | |
+| projection (field selection) | |
+| where | Where \<conditions\>. The conditions support numeric, string and logical comparison |
+| aggregation functions | average, count, sum |
+| update query | |
+| delete query | |
+| equal join | |
 
 ### Table schema
-#### `User` table
+#### `user` table
 | field_name | data_type |
 |---|---|
 | id | int |
@@ -46,11 +58,11 @@ This project is a simple DBMS implemented using C, as the education material of 
 | email | char[255] |
 | age | int |
 
-### Supported command
-| Command | Description |
-|---|---| 
-| insert | The insert command only allow insert one `User_t` record at a time |
-| select | The select command will only print out all the `User_t` records in the current databases |
+#### `like` table
+| field_name | data_type |
+|---|---|
+| id1 | int |
+| id2 | int |
 
 
 ## Storage mode
